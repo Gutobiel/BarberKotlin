@@ -19,9 +19,9 @@ visualizar relatorios financeiros de forma eficiente e pratico, na palma do mao 
 
 ## Capturas de Tela
 
-<img src="assets/Captura1.gif" alt="Pontuação" height="500"/>
-<img src="assets/Captura2.gif" alt="Fim do Jogo" height="500"/>
-<img src="assets/captura3.gif" alt="Pulando palavras" height="500"/>
+<img src="Home.png" alt="" height="500"/>
+<img src="LightHome.png" alt="" height="500"/>
+<img src="DarkMode.png" alt="" height="500"/>
 
 ## Como Jogar
 
