@@ -1,23 +1,21 @@
-# Mistura Letras
+# GERENCIADOR DE AGENDA DE BARBEIROS
 
 <img src="assets/jogo.jpg" alt="App Logo" width="200"/>
 
 ## Descrição
 
-**Mistura Letras** é um divertido e desafiador jogo de palavras onde você precisa encontrar a
-palavra correta a partir de letras embaralhadas. Com 37 palavras relacionadas ao tema tecnologia,
-você poderá testar seus conhecimentos e habilidades enquanto se diverte.
+**Gerenciador de Agenda De Barbeiros** é um aplicativo desenvolvido para auxiliar os barbeiros a 
+organizarem seus agendamentos, gerenciar clientes, acompanhar o historico de serviços prestados e 
+visualizar relatorios financeiros de forma eficiente e pratico, na palma do mao em qualquer celular.
 
 ## Funcionalidades
 
-- **Uso de viewModel**
-- **Uso de lista ou Grid**
-- **Preparado para o tema dark e light conforme o material 3**
-- **Uso de botões**
-- **Uso de imagens**
-- **Fonte personalizada**
-- **Criação da Top Bar**
-- **Uma simples animação**
+- **Cadastro de Clientes**
+- **Agendamento de Serviços**
+- **Histórico de Cortes**
+- **Relatórios Financeiros**
+- **Tema Dark e Light**
+- **Interface leve e intuitiva**
 
 ## Capturas de Tela
 
@@ -27,17 +25,19 @@ você poderá testar seus conhecimentos e habilidades enquanto se diverte.
 
 ## Como Jogar
 
-1. **Inicie o Jogo**: Abra o aplicativo e clique em "Jogar".
-2. **Desembaralhe as Palavras**: Tente descobrir qual é a palavra correta a partir das letras
-   embaralhadas.
-3. **Verifique suas Respostas**: Se você errar, o campo ficará vermelho.
-4. **Pontuação**: Ao final do jogo, veja sua pontuação total.
+1. **Inicializando o Aplicativo**: Abra o aplicativo e acesse a pagina home.
+2. **Adicionar CLiente**: Vá para a secção de clientes e adicione as informações necessarias de cada
+   cliente.
+3. **Agende um Serviço**: Selecione uma data e hora, escolha o cliente e o serviço desejado com seu
+   respectivo valor. 
+4. **Gerencie seu Dia**: Visualize e edite seus agendamentos na tela principal.
+5. **Acompanhe os Saldoso**: Acesse a secao de saldos para verificar o saldo obtido no dia, semana ou mes.
 
 ## Instalação
 
 1. **Clone o repositório**:
     ```sh
-    git clone https://github.com/seu-usuario/mistura-letras.git
+    git clone https://github.com/Gutobiel/BarberKotlin.git
     ```
 2. **Abra no Android Studio**:
    - Vá em `File > Open` e selecione o diretório do projeto.
@@ -49,4 +49,8 @@ você poderá testar seus conhecimentos e habilidades enquanto se diverte.
 
 ## Integrantes
 
-- **Nome do Desenvolvedor**: Fernando Dias de Souza
+- **Nome do Desenvolvedor**:
+- Augusto Rodrigues dos Santos RA 22252153;
+- Pauliany Bentes Pepato RA 22251174;
+- Thiago Lacerda Canhedo RA 22252356;
+- Vítor Rodrigues de Almeida RA 22252826.
