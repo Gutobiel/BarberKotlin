@@ -49,7 +49,7 @@ visualizar relatorios financeiros de forma eficiente e pratico, na palma do mao 
 
 ## Integrantes
 
-- **Nome do Desenvolvedor**:
+- **Nome dos Desenvolvedores**:
 - Augusto Rodrigues dos Santos RA 22252153;
 - Pauliany Bentes Pepato RA 22251174;
 - Thiago Lacerda Canhedo RA 22252356;
