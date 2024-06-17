@@ -20,7 +20,7 @@ visualizar relatorios financeiros de forma eficiente e pratico, na palma do mao 
 ## Capturas de Tela
 
 <img src="Home.png" alt="" height="500"/>
-<img src="LightHome.png" alt="" height="500"/>
+<img src="LightMode.png" alt="" height="500"/>
 <img src="DarkMode.png" alt="" height="500"/>
 
 ## Como Jogar
