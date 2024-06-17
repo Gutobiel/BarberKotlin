@@ -1,3 +1,5 @@
+package com.example.barbearia
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -5,6 +7,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -17,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +35,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+
 
 data class Cliente(val nome: String, val valor: Double, val horario: String)
 
@@ -81,7 +86,23 @@ fun BarberShopApp() {
     ) {
         Scaffold(
             topBar = {
-                TopAppBar(title = { Text("Barbearia") })
+                TopAppBar(
+                    title = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(top = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.barbearia),
+                                contentDescription = "Logo",
+                                modifier = Modifier
+                                    .size(60.dp)
+                            )
+                        }
+                    }
+                )
             },
             content = { paddingValues ->
                 NavHost(navController = navController, startDestination = "main", modifier = Modifier.padding(paddingValues)) {
@@ -101,68 +122,87 @@ fun MainScreen(navController: NavController, viewModel: BarberShopViewModel = vi
     val totalHoje by viewModel.totalHoje.collectAsState()
     val totalMes by viewModel.totalMes.collectAsState()
 
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .background(
+                        Brush.horizontalGradient(
+                            colors = listOf(
+                                Color(0xFFE63946),
+                                Color(0xFF1D3557)
+                            )
+                        ),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(17.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    InfoCard(title = "Hoje", value = totalHoje, count = clientesMarcados.size + clientesNaoMarcados.size, modifier = Modifier.weight(1f))
+
+                    // Adicionar um Divider vertical
+                    Divider(
+                        color = Color.White,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(1.dp)
+                            .padding(vertical = 8.dp) // Opcional: adicionar padding para não tocar nas bordas superiores e inferiores
+                    )
+
+                    InfoCard(title = "Este Mês", value = totalMes, modifier = Modifier.weight(1f))
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Clientes Marcados de Hoje", style = MaterialTheme.typography.titleMedium)
+        }
+        items(clientesMarcados) { cliente ->
+            ClienteItem(cliente)
+        }
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Clientes Não Marcados de Hoje", style = MaterialTheme.typography.titleMedium)
+        }
+        items(clientesNaoMarcados) { cliente ->
+            ClienteItem(cliente)
+        }
+        item {
+            Spacer(modifier = Modifier
+                .height(8.dp)
                 .background(
                     Brush.horizontalGradient(
                         colors = listOf(Color(0xFF6200EA), Color.DarkGray)
                     )
-                )
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                InfoCard(title = "Hoje", value = totalHoje, count = clientesMarcados.size + clientesNaoMarcados.size, modifier = Modifier.weight(1f))
-                Spacer(modifier = Modifier.width(8.dp))
-                InfoCard(title = "Este Mês", value = totalMes, modifier = Modifier.weight(1f))
-            }
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Clientes Marcados de Hoje", style = MaterialTheme.typography.titleMedium)
-        LazyColumn {
-            items(clientesMarcados) { cliente ->
-                ClienteItem(cliente)
-            }
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Clientes Não Marcados de Hoje", style = MaterialTheme.typography.titleMedium)
-        LazyColumn {
-            items(clientesNaoMarcados) { cliente ->
-                ClienteItem(cliente)
-            }
-        }
-        Spacer(modifier = Modifier.height(8.dp)
-            .background(
-            Brush.horizontalGradient(
-                colors = listOf(Color(0xFF6200EA), Color.DarkGray)
-            )
-        ))
+                ))
 
-        Button(
-            onClick = { viewModel.adicionarClienteNaoMarcado() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(46.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF6200EA),
-                contentColor = Color.White
-            ),
-            shape = RoundedCornerShape(16.dp),
-            elevation = ButtonDefaults.buttonElevation(8.dp)
-        ) {
-            Text(
-                text = "Adicionar Cliente",
-                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp)
-            )
+            Button(
+                onClick = { viewModel.adicionarClienteNaoMarcado() },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(46.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFE63946),
+                    contentColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp),
+                elevation = ButtonDefaults.buttonElevation(8.dp)
+            ) {
+                Text(
+                    text = "Adicionar Cliente",
+                    style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                )
+            }
         }
     }
 }
@@ -214,7 +254,7 @@ fun InfoCard(title: String, value: Double, count: Int? = null, modifier: Modifie
             .fillMaxWidth()
             .height(150.dp)
             .padding(8.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
+        elevation = CardDefaults.cardElevation(0.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
