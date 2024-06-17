@@ -1,6 +1,6 @@
 # GERENCIADOR DE AGENDA DE BARBEIROS
 
-<img src="assets/jogo.jpg" alt="App Logo" width="200"/>
+<img src="assets/logo_barber.jpg" alt="App Logo" width="200"/>
 
 ## Descrição
 
